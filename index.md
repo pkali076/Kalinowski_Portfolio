@@ -5,12 +5,24 @@ The first project is a Rick and Morty card application where the user can choose
 
 The images below show a preview of what the application looks like, not only on a desktop format yet also for a mobile application.
 
-Furthermore, I have shared some screenshots of local-storage use with a key to store multiple selections. Ideally, there will be a different key for each user. In the event of this being a full-application for someone's favorite characters, there will also be a profile page separate from the local-storage favorites page. In this case, users can look at recent favorites from other users on the same application. Such as, a trending option.
+Furthermore, I have shared some screenshots of local-storage use with a key to store multiple selections. Ideally, there will be a different key for each user. In the event of this being a full-application for someone's favorite characters, there will also be a profile page separate from the local-storage favorites page. In this case, users can look at recent favorites from other users on the same application. Such as; a trending option.
 
+Note: This uses the Rick and Morty API
+[Rick and Morty Card Application](https://people.rit.edu/pak5559/projects/Project2/app.html)
 
 ![](images/desktopApp.png)
 ![](images/mobileApp.png)
 
+## The mobile version above was utilised through the Bulma CSS framework.
+
+![](images/localStorage.png)
+
+## Local storage which shows user-saved favorites
+
 [Rick and Morty Card Application](https://people.rit.edu/pak5559/projects/Project2/app.html)
 
 
+
+The second project is an Audio Visualizer application where the user can watch a visualizers through particular mp3 files. To further this project, an idea I had is to include a file-event system which resets the canvas once a user uploads a file. Below are some screenshots regarding this project file's completion. The Web Audio API was my main source of data. 
+
+[Web Audio API Visualizer with Canvas](https://people.rit.edu/pak5559/projects/FinalProject/app.html)
