@@ -1,8 +1,3 @@
----
-layout: page
-title: Project I
----
-
 ## Welcome to my Portfolio!
 # By Philip Kalinowski
 
