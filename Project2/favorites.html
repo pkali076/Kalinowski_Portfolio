@@ -1,0 +1,149 @@
+<!DOCTYPE>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project I</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amaranth&display=swap');
+
+        body {
+            font-family: Amaranth;
+        }
+
+        p {
+            font-family: Amaranth;
+            font-size: 24px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script src="./src/main.js" type="module"></script>
+
+</head>
+
+
+<body>
+
+    <navbar-code></navbar-code>
+    <!-- <fav-page></fav-page> -->
+    <button class="button is-info is-medium my-5 is-info" id="clearFav">Clear Favorites</button>
+    <!-- <p id="output" style="padding-bottom:300px"></p> -->
+    <div class="columns">
+        <div class="column card-list-fav is-inline is-one-fifth"></div>
+        <div class="column episode-list-fav is-inline is-one-fifth"></div>
+    </div>
+    <script>
+        let chosenFavorites = [];
+        const passKey = "pak5559-RMKEY";
+        let chosenEpFavorites = [];
+        const passEpKey = "pak5559-EPKEY";
+
+        const loadCharacter = rmObj => {
+            const rmCard = document.createElement("rm-card");
+            rmCard.dataset.id = rmObj.id ?? "Non-existent Character";
+            rmCard.dataset.name = rmObj.name ?? "no name found";
+            rmCard.dataset.status = rmObj.status ?? "?";
+            rmCard.dataset.species = rmObj.species ?? "?";
+            rmCard.dataset.type = rmObj.type ?? "?";
+            rmCard.dataset.gender = rmObj.gender ?? "?";
+            rmCard.dataset.origin = rmObj.origin.name ?? "?";
+            rmCard.dataset.image = rmObj.image ?? "?";
+
+            //check to see whether card is a favorite
+            for (let i = 0; i < chosenFavorites.length; i++) {
+                if (rmCard.dataset.id == chosenFavorites[i]) {
+                    rmCard.dataset.isFavorite = true;
+                } else {
+                    rmCard.dataset.isFavorite = false;
+                }
+            }
+
+            //favorite status change event listener
+            //rmCard.addEventListener("favoritestatus", e => updateFavorites(e.detail.isFavorite, rmCard));
+            document.querySelector(".card-list-fav").appendChild(rmCard);
+        };
+
+        const loadEpisode = rmEpisodeObj =>{
+        const rmEpisode = document.createElement("my-episode");
+        //const rmEpisodeCharacters = document.createElement("my-episode");
+        rmEpisode.dataset.id = rmEpisodeObj.id ?? "Non-existent Episode";
+        rmEpisode.dataset.name = rmEpisodeObj.name ?? "Non-existent Episode Name";
+        rmEpisode.dataset.air_date = rmEpisodeObj.air_date ?? "Show Has Not Aired";
+        rmEpisode.dataset.episode = rmEpisodeObj.episode ?? "Episode Not Available";
+        // rmEpisodeCharacters.dataset.characters = rmEpisodeObj.characters ?? "No Characters Were In Show";
+        for (let i = 0; i < chosenEpFavorites.length; i++) {
+            if (rmEpisode.dataset.id == chosenEpFavorites[i]) {
+                rmEpisode.dataset.isFavorite = true;
+            } else {
+                rmEpisode.dataset.isFavorite = false;
+            }
+            }
+            //rmEpisode.addEventListener("favoriteEpisode", e => updateEpisodeFavorites(e.detail.isFavorite, rmEpisode));
+            document.querySelector(".episode-list-fav").appendChild(rmEpisode);
+        //rmEpisode.addEventListener("favoriteEpisode", _ => updateEpisodeFB(rmEpisode.dataset.id, rmEpisode.dataset.name));
+        
+        
+        };
+
+        const loadFile = (url, callback) => {
+            const fetchPromise = async () => {
+                const response = await fetch(url);
+                callback(await response.json());
+            }
+            fetchPromise();
+        };
+
+        const jsonLoaded = json => {
+            //load results into json
+            json.results.forEach(obj => rmJSON[obj.id] = obj);
+            let showFavs = document.querySelector("#showFav");
+            showFavs.onclick = () => {
+                getLocalStorage(chosenFavorites, passKey);
+            }
+            // }
+
+        }
+
+        function getLocalStorage(array, itemID) {
+            chosenFavorites = JSON.parse(localStorage.getItem(passKey));
+            chosenEpFavorites = JSON.parse(localStorage.getItem(passEpKey));
+            if (chosenFavorites == null && chosenEpFavorites == null){
+                console.log("Sorry, there are no chosen favorites");
+            }
+            else{
+                for (let i = 0; i < chosenFavorites.length; i++) {
+                loadFile(`https://rickandmortyapi.com/api/character/${chosenFavorites[i]}`, loadCharacter);
+            }
+            for (let i = 0; i < chosenEpFavorites.length; i++) {
+                loadFile(`https://rickandmortyapi.com/api/episode/${chosenEpFavorites[i]}`, loadEpisode);
+            }
+            }
+
+        }
+
+
+        let closeCard = document.querySelector("#clearFav");
+        //  let cardInfo = document.querySelector("#favoritesDisplay");
+        //if onclick == true, remove the card from favorites in storage.
+        closeCard.onclick = () => {
+            localStorage.clear();
+            document.querySelector(".card-list-fav").innerHTML = "";
+            document.querySelector(".episode-list-fav").innerHTML = "";
+        }
+
+
+        
+            getLocalStorage(chosenFavorites, passKey);
+           // getLocalStorage(chosenEpFavorites, passEpKey);
+        
+    </script>
+
+
+
+    <my-footer data-title="Rick and Morty Search Application"></my-footer>
+</body>
+
+
+</html>
