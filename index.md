@@ -28,6 +28,7 @@ The second project is an Audio Visualizer application where the user can watch a
 [Web Audio API Visualizer with Canvas](https://people.rit.edu/pak5559/projects/FinalProject/app.html)
 
 The application is also available in a mobile format as well!
+
 ![](images/mobileAudioApp.png)
 
 There are set controls as well for this application. The first few choices are for the visualizer itself and the other options are options/modifiers for the app.
