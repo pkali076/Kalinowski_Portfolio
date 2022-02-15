@@ -26,3 +26,17 @@ Note: This uses the Rick and Morty API
 The second project is an Audio Visualizer application where the user can watch a visualizers through particular mp3 files. To further this project, an idea I had is to include a file-event system which resets the canvas once a user uploads a file. Below are some screenshots regarding this project file's completion. The Web Audio API was my main source of data. 
 
 [Web Audio API Visualizer with Canvas](https://people.rit.edu/pak5559/projects/FinalProject/app.html)
+
+The application is also available in a mobile format as well!
+![](images/mobileAudioApp.png)
+
+There are set controls as well for this application. The first few choices are for the visualizer itself and the other options are options/modifiers for the app.
+![](images/controlsAudio.png)
+
+The last image shows a full-screen adaptation to the visualizer.
+![](images/fullScreenAudio.png)
+
+
+As you can see, there are only a couple choices here as I showcase my work. However, more projects are on the way (such as through the use of NodeJS) this semester!
+Thank you for checking out my work!
+
